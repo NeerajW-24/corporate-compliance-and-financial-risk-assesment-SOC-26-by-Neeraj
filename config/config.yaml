@@ -1,0 +1,110 @@
+# Corporate Compliance and Financial Risk Assessment - Configuration
+
+project:
+  name: "Corporate Compliance and Financial Risk Assessment"
+  version: "1.0.0"
+  event: "Season of Code | WnCC, IIT Bombay"
+  date: "Mar 2025"
+
+# Database Configuration
+database:
+  type: "postgresql"  # or mysql
+  host: "localhost"
+  port: 5432
+  username: "compliance_user"
+  password: "${DB_PASSWORD}"
+  database: "compliance_db"
+  economies_count: 200
+
+# Data Integration Configuration
+data_integration:
+  datasets_count: 3
+  sources:
+    - name: "UN Comtrade Database"
+      type: "public"
+      url: "https://comtrade.un.org/api"
+    - name: "World Bank Trade Statistics"
+      type: "public"
+      url: "https://data.worldbank.org"
+    - name: "IMF Direction of Trade Statistics (DOTS)"
+      type: "public"
+      url: "https://www.imf.org/external/datamapper"
+  
+# Anomaly Detection Configuration
+anomaly_detection:
+  methods:
+    - name: "Benford's Law"
+      description: "Detection of fraudulent invoice amounts"
+      threshold: 0.15
+    - name: "Mahalanobis Distance"
+      description: "Multivariate outlier detection"
+      threshold: 3.0
+    - name: "Multivariate Regression"
+      description: "Pattern analysis and deviation detection"
+      confidence_level: 0.95
+
+# TBML Typologies Configuration (6 typologies)
+tbml_typologies:
+  count: 6
+  typologies:
+    - id: 1
+      name: "Over-invoicing"
+      description: "Exporters invoice goods at prices significantly higher than market prices"
+      risk_level: "high"
+    - id: 2
+      name: "Under-invoicing"
+      description: "Exporters invoice goods at prices significantly lower than market prices"
+      risk_level: "high"
+    - id: 3
+      name: "Over-shipment"
+      description: "Actual goods shipped exceed quantity specified in commercial documents"
+      risk_level: "high"
+    - id: 4
+      name: "Under-shipment"
+      description: "Actual goods shipped less than quantity specified in commercial documents"
+      risk_level: "medium"
+    - id: 5
+      name: "Phantom Shipment"
+      description: "No actual goods shipment, only documentation transfer"
+      risk_level: "critical"
+    - id: 6
+      name: "Misclassification"
+      description: "Goods classified under incorrect HS codes to manipulate duties"
+      risk_level: "high"
+
+# Dashboard Configuration (12+ KPIs)
+dashboard:
+  platform: "Power BI"
+  kpis_count: 12
+  kpis:
+    - "Total Transactions Monitored"
+    - "Anomalies Detected (All Methods)"
+    - "High Risk Transactions"
+    - "Average Mahalanobis Distance"
+    - "Benford's Law Compliance %"
+    - "Multivariate Regression Deviations"
+    - "TBML Typology Distribution"
+    - "Economy-wise Risk Heatmap"
+    - "Temporal Trend Analysis"
+    - "Transaction Value Distribution"
+    - "Flagged Entities"
+    - "False Positive Rate"
+    - "Detection Accuracy"
+    - "Risk Score Distribution"
+
+# Analysis Parameters
+analysis:
+  time_window: "quarterly"  # daily, weekly, monthly, quarterly, yearly
+  confidence_threshold: 0.90
+  min_sample_size: 100
+  
+# Compliance Standards
+compliance:
+  aml_standards: ["FATF", "UN", "Basel Committee"]
+  regulations: ["AML/CFT", "OFAC", "EU DORA"]
+  
+# Logging and Monitoring
+logging:
+  level: "INFO"
+  format: "json"
+  file: "logs/compliance_analysis.log"
